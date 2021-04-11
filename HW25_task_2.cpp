@@ -55,7 +55,7 @@ int main()
             }
             for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
             {
-                if(ITR->first == user_input) counter_to_show = ITR->second;
+                if(ITR->first == user_input && counter_to_show > ITR->second) counter_to_show = ITR->second;
             }
             counter_to_add = 0;
         }
