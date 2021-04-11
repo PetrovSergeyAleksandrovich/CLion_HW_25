@@ -5,3 +5,4 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(CLion_HW_25 main.cpp)
 add_executable(task_1 HW25_task_1.cpp)
+add_executable(task_2 HW25_task_2.cpp)
