@@ -4,23 +4,18 @@
 int main()
 {
     std::string user_input;
-    int counter_to_show = 1;
-    int counter_to_add = 0;
+    int counter_surname = 1;
     std::map<std::string, int> dict;
+    std::map<std::string, int>::iterator ITR_g;
 
-    //START Init dictionary and sort them
+    //START Init dictionary
     dict.insert(std::make_pair<std::string, int>("Sidorov", 1));
-    dict.insert(std::make_pair<std::string, int>("Petrov", 2));
-    dict.insert(std::make_pair<std::string, int>("Agafonov", 3));
-    dict.insert(std::make_pair<std::string, int>("Laptev", 4));
-    for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
-    {
-        ITR->second = ++counter_to_add;
-    }
-    counter_to_add = 0;
-    //END Init dictionary and sort them
+    dict.insert(std::make_pair<std::string, int>("Petrov", 1));
+    dict.insert(std::make_pair<std::string, int>("Agafonov", 1));
+    dict.insert(std::make_pair<std::string, int>("Laptev", 2));
+    ITR_g = dict.begin();
+    //ENDS Init dictionary and sort them
 
-    //Main cicle starts here
     while(user_input != "exit")
     {
 
@@ -38,30 +33,67 @@ int main()
             //Show next or show from new added person
             for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
             {
-                if(counter_to_show == ITR->second)
+                if(ITR == ITR_g && counter_surname <= ITR->second)
                 {
-                    std::cout << "<- " << ITR->first << std::endl << std::endl;
-                    counter_to_show++;
+                    std::cout << "<- " << ITR->first << " " << counter_surname << std::endl << std::endl;
+                    if(ITR->second > counter_surname)
+                    {
+                        ITR_g = ITR;
+                        counter_surname++;
+                    }
+                    else
+                    {
+                        ITR_g++;
+                        counter_surname = 1;
+                    }
                     break;
                 }
             }
+
         }
         else
         {
+            bool flag = false;
+            std::map<std::string, int>::iterator ITR_l;
             //Add new person
-            dict.insert(std::pair<std::string, int>(user_input, 0));
             for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
             {
-                ITR->second = ++counter_to_add;
+                //if exists - add quantity
+                if(user_input == ITR->first)
+                {
+                    flag = true;
+                    ITR_l = ITR;
+                    break;
+                }
             }
-            for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
-            {
-                if(ITR->first == user_input && counter_to_show > ITR->second) counter_to_show = ITR->second;
-            }
-            counter_to_add = 0;
-        }
 
+            if(flag)
+            {
+                ITR_l->second++;
+                counter_surname = ITR_l->second;
+                if(user_input == ITR_l->first && ITR_g->first > ITR_l->first)
+                {
+                    ITR_g = ITR_l;
+                }
+            }
+
+            if(!flag)
+            {
+                //if new person - add
+                dict.insert(std::pair<std::string, int>(user_input, 1));
+                //Switch iterator to added Surname
+                for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
+                {
+                    if(user_input == ITR->first && ITR_g->first > ITR->first)
+                    {
+                        ITR_g = ITR;
+                        break;
+                    }
+                }
+            }
+        }
     }
-    //Main cicle ends here
+
+    return 0;
 }
 
