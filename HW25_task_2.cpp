@@ -20,6 +20,7 @@ int main()
     counter_to_add = 0;
     //END Init dictionary and sort them
 
+    //Main cicle starts here
     while(user_input != "exit")
     {
 
@@ -60,8 +61,7 @@ int main()
             counter_to_add = 0;
         }
 
-
     }
-
+    //Main cicle ends here
 }
 
