@@ -58,7 +58,7 @@ int main()
             //Add new person
             for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
             {
-                //if exists - add quantity
+                //check if Surname exists
                 if(user_input == ITR->first)
                 {
                     flag = true;
@@ -69,6 +69,7 @@ int main()
 
             if(flag)
             {
+                //if exists - add quantity
                 ITR_l->second++;
                 counter_surname = ITR_l->second;
                 if(user_input == ITR_l->first && ITR_g->first > ITR_l->first)
@@ -79,7 +80,7 @@ int main()
 
             if(!flag)
             {
-                //if new person - add
+                //if new person - add Surname
                 dict.insert(std::pair<std::string, int>(user_input, 1));
                 //Switch iterator to added Surname
                 for(std::map<std::string, int>::iterator ITR = dict.begin(); ITR != dict.end(); ITR++)
