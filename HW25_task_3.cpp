@@ -6,8 +6,6 @@ int main()
 {
     std::string parent_word, child_word;
     std::map<int, char> parent, child;
-    int counter_g = 0;
-    int word_size = 0;
 
     std::cout << "Input first word:";
     std::cin >> parent_word;
@@ -28,10 +26,9 @@ int main()
     //Check length comparison
     if(parent_word.length() != child_word.length())
     {
-        std::cout << "false_1";
+        std::cout << "false_1 / lengths not equal";
         return 0;
     }
-    else word_size = parent_word.length();
     //Checked length comparison
 
     //Check dictionaries for anagrama
@@ -42,19 +39,19 @@ int main()
             if(parent[i] == child[j])
             {
                 child[j] = '*';
-                counter_g++;
                 break;
             }
             if(j == child_word.length()-1)
             {
-                std::cout << "false_2";
+                std::cout << "false_2 / no char at child: " << parent[i];
                 return 0;
             }
         }
     }
     //Checked dictionaries for anagrama
 
-    counter_g == word_size ? std::cout << "anagrama true" : std::cout << "anagrama false";
+    //If all checks passed prints:
+    std::cout << "true" ;
 
     return 0;
 }
