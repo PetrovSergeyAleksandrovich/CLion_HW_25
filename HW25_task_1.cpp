@@ -84,7 +84,7 @@ int main()
             std::cout << "\ncicle: " << ++i << std::endl;
 
             //condition to exit
-            if(mid == 1 && tmp_down == 2 && tmp_up ==1)
+            if(mid == tmp_up)
             {
                 std::cout << "no number in the list" << std::endl;
                 break;
